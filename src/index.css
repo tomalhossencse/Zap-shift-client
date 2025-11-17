@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default
+  , dark --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-base-200 : #EAECED;
+  --color-base-300 : #DADADA;
+  --color-primary: #CAEB66;
+  --color-secondary: #03373D;
+  --color-primary-content : #606060;
+  --color-secondary-content: #1F1F1F;
+  --color-base-300 : #e7e7e7;
+  --color-accent: #4D4D4D;
+  --color-accent-content :#F5F7FA;
+}
+
+
+body{
+    font-family: "Urbanist", sans-serif;
+}
+.btn-primary{
+  @apply btn bg-primary rounded-3xl px-8 py-6 text-xl font-bold text-secondary-content hover:bg-base-100;
+}
+.btn-primary-rounded{
+  @apply btn bg-primary rounded-xl px-8 py-6 text-xl font-bold text-secondary-content hover:bg-base-100 hover:border-primary hover:border-2 shadow-md hover:shadow-xl;
+}
+.btn-outline{
+ @apply btn btn-outline  rounded-3xl px-8 py-6 text-xl font-bold text-primary hover:bg-primary hover:text-secondary-content
+}
