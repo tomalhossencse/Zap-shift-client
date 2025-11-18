@@ -1,10 +1,11 @@
 import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { signInwithGoogle } = useAuth();
   const handleSigninwithGoogle = () => {
     signInwithGoogle()
@@ -17,7 +18,7 @@ const SocialLogin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         Swal.fire({

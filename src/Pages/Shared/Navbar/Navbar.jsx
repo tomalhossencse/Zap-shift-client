@@ -22,12 +22,17 @@ const Navbar = () => {
   };
 
   const links = (
-    <>
-      <li>
+    <div className="flex justify-center items-center gap-8">
+      <li className="text-secondary font-medium">
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
+      <li className="text-secondary font-medium">
         <NavLink to="/coverage">Coverage</NavLink>
+      </li>
+      <li className="text-secondary font-medium">
+        <NavLink to="/beArider">
+          <button className="btn-primary-rounded-small">Be a rider</button>
+        </NavLink>
       </li>
 
       {/* {!user && (
@@ -94,7 +99,7 @@ const Navbar = () => {
           </svg>
         </label>
       </li>
-    </>
+    </div>
   );
   return (
     <div className="bg-base-100 shadow-md fixed w-full top-0 z-20 md:px-0 px-4">

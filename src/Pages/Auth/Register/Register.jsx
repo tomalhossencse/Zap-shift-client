@@ -1,24 +1,65 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import Container from "../../../Utility/Container";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [show, setShow] = useState(false);
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const handleRegistration = (data) => {
-    console.log("after register", data);
+    // console.log("after register", data.photo[0]);
+    const profileImg = data.photo[0];
+
     registerUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+        // store img  and get the url
+        const formData = new FormData();
+        formData.append("image", profileImg);
+        const img_API_URL_Key = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_img_API_URL_Key
+        }`;
+        axios.post(img_API_URL_Key, formData).then((res) => {
+          console.log("after img uplaod", res.data);
+          // update profile
+
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          updateUserProfile(userProfile)
+            .then(() => {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Created Succesfully!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate(location?.state || "/");
+            })
+            .catch((error) => {
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: error.message,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            });
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -38,8 +79,29 @@ const Register = () => {
             onSubmit={handleSubmit(handleRegistration)}
             className="fieldset"
           >
-            {/* email */}
             <fieldset className="fieldset">
+              {/* name */}
+              <label className="label font-semibold">Name</label>
+              <input
+                type="text"
+                {...register("name", { required: true })}
+                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="Enter your name"
+              />
+              {errors.name?.type === "required" && (
+                <p className="text-red-500">Name Required!</p>
+              )}
+              {/* photo */}
+              <label className="label font-semibold">Photo</label>
+              <input
+                type="file"
+                {...register("photo", { required: true })}
+                className="file-input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+              {errors.photo?.type === "required" && (
+                <p className="text-red-500">Photo Required!</p>
+              )}
+              {/* email */}
               <label className="label font-semibold">Email</label>
               <input
                 type="email"
@@ -105,6 +167,7 @@ const Register = () => {
               Already have an account? Please{" "}
               <NavLink
                 className="text-primary font-medium hover:underline"
+                state={location?.state}
                 to={"/login"}
               >
                 Login

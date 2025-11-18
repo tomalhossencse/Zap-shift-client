@@ -30,6 +30,12 @@ body{
 .btn-primary-rounded{
   @apply btn bg-primary rounded-xl px-8 py-6 text-xl font-bold text-secondary-content hover:bg-base-100 hover:border-primary hover:border-2 shadow-md hover:shadow-xl;
 }
+.btn-primary-rounded-small{
+  @apply btn bg-primary rounded-md text-lg font-bold text-secondary-content hover:bg-base-100 hover:border-primary hover:border-2 shadow-md hover:shadow-xl;
+}
 .btn-outline{
  @apply btn btn-outline  rounded-3xl px-8 py-6 text-xl font-bold text-primary hover:bg-primary hover:text-secondary-content
+}
+.btn-sm{
+  @apply btn btn-sm bg-primary text-secondary rounded-md shadow-md hover:bg-black transition-transform hover:scale-105 hover:text-base-100
 }

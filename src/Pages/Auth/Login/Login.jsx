@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Container from "../../../Utility/Container";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
@@ -8,8 +8,10 @@ import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
-  const [show, setShow] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const [show, setShow] = useState(false);
   const { signInuser } = useAuth();
   const {
     register,
@@ -28,7 +30,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         // console.log(error);
@@ -121,6 +123,7 @@ const Login = () => {
               New to our website?{" "}
               <NavLink
                 className="text-primary font-medium hover:underline"
+                state={location?.state}
                 to={"/register"}
               >
                 Create an account

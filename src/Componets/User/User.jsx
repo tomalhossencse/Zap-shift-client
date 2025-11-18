@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { FaUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
+import { MdOutlineElectricBike } from "react-icons/md";
 
 const User = () => {
   const { logout, user } = useAuth();
@@ -43,10 +44,7 @@ const User = () => {
               <img
                 alt="Tailwind CSS Navbar component"
                 referrerPolicy="no-referrer"
-                src={
-                  user.photoURL ||
-                  "https://avatars.githubusercontent.com/u/195260435?v=4"
-                }
+                src={user?.photoURL}
               />
             </div>
           </div>
@@ -74,13 +72,17 @@ const User = () => {
           </ul>
         </div>
       ) : (
-        <Link
-          to={"/login"}
-          className="btn btn-sm bg-primary rounded-md shadow-md hover:bg-black transition-transform hover:scale-105  text-white"
-        >
+        <div className="flex justify-between items-center gap-4">
           {" "}
-          <IoLogIn /> Login
-        </Link>
+          <Link to={"/login"} className="btn-sm">
+            {" "}
+            <IoLogIn /> Login
+          </Link>
+          <Link to="/beArider" className="btn-sm">
+            {" "}
+            <MdOutlineElectricBike /> Become a Rider
+          </Link>
+        </div>
       )}
     </div>
   );
