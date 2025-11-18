@@ -39,3 +39,9 @@ body{
 .btn-sm{
   @apply btn btn-sm bg-primary text-secondary rounded-md shadow-md hover:bg-black transition-transform hover:scale-105 hover:text-base-100
 }
+.btn-sm-2{
+  @apply btn  px-12 btn-sm bg-primary text-secondary rounded-md shadow-md hover:bg-black transition-transform hover:scale-105 hover:text-base-100
+}
+.navbar .active {
+  @apply text-secondary font-bold bg-primary rounded-2xl
+}

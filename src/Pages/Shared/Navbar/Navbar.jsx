@@ -6,10 +6,10 @@ import Container from "../../../Utility/Container";
 import { useEffect, useState } from "react";
 import Logo from "../../../Componets/Logo/Logo";
 import User from "../../../Componets/User/User";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-  //   const navigate = useNavigate();
-  //   const { user, handleLogout } = use(AuthContext);
+  const { user } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   useEffect(() => {
     const html = document.querySelector("html");
@@ -27,12 +27,10 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li className="text-secondary font-medium">
-        <NavLink to="/coverage">Coverage</NavLink>
+        <NavLink to="/send-parcel">Send Parcel</NavLink>
       </li>
       <li className="text-secondary font-medium">
-        <NavLink to="/beArider">
-          <button className="btn-primary-rounded-small">Be a rider</button>
-        </NavLink>
+        <NavLink to="/coverage">Coverage</NavLink>
       </li>
 
       {/* {!user && (
@@ -44,23 +42,16 @@ const Navbar = () => {
             <NavLink to="/register">Register</NavLink>
           </li>
         </>
-      )}
+      )} */}
       {user && (
         <>
-          <li>
-            <NavLink to="/add-issues">Add Issues</NavLink>
-          </li>
-          <li>
-            <NavLink to="/my-issues">My Issues</NavLink>
-          </li>
-          <li>
-            <NavLink to="/my-contribution">My Contribution</NavLink>
-          </li>
-          <li>
-            <NavLink to="/profile">Profile</NavLink>
+          <li className="text-secondary font-medium">
+            <NavLink className={"text-secondary font-medium"} to="/beArider">
+              Become a rider
+            </NavLink>
           </li>
         </>
-      )} */}
+      )}
       <li className="px-10">
         {" "}
         <label className="flex cursor-pointer gap-2">
@@ -147,58 +138,6 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
               <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
-            {/* {user ? (
-              <div className="dropdown dropdown-end z-50">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-9 border-2 border-gray-300 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      referrerPolicy="no-referrer"
-                      src={
-                        user.photoURL ||
-                        "https://avatars.githubusercontent.com/u/195260435?v=4"
-                      }
-                    />
-                  </div>
-                </div>
-                <ul
-                  tabIndex="-1"
-                  className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-                >
-                  <div className=" pb-3 border-b border-b-gray-200">
-                    <li className="text-sm font-bold">{user.displayName}</li>
-                    <li className="text-xs">{user.email}</li>
-                  </div>
-                  <li className="mt-3">
-                    <Link to={"/profile"}>
-                      <FaUser /> Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      onClick={logoutUser}
-                      className="btn-xs bg-primary text-white font-bold text-md rounded-md shadow-md hover:bg-black transition-transform hover:scale-105"
-                    >
-                      <IoLogOut /> Logout
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              <Link
-                to={"/login"}
-                className="btn btn-sm bg-primary rounded-md shadow-md hover:bg-black transition-transform hover:scale-105  text-white"
-              >
-                {" "}
-                <IoLogIn /> Login
-              </Link>
-
-
-            )} */}
             <User />
           </div>
         </div>
