@@ -33,16 +33,13 @@ const Navbar = () => {
         <NavLink to="/coverage">Coverage</NavLink>
       </li>
 
-      {/* {!user && (
+      {user && (
         <>
           <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
-          <li>
-            <NavLink to="/register">Register</NavLink>
+            <NavLink to="/dashboard/my-parcels">My Parcels</NavLink>
           </li>
         </>
-      )} */}
+      )}
       {user && (
         <>
           <li className="text-secondary font-medium">

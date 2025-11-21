@@ -3,6 +3,8 @@ import Container from "../../Utility/Container";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Sendparcel = () => {
   const {
@@ -11,6 +13,8 @@ const Sendparcel = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+  const axiosSecure = useAxiosSecure();
 
   const { user } = useAuth();
   const serviceCenters = useLoaderData();
@@ -49,6 +53,31 @@ const Sendparcel = () => {
       }
     }
     console.log(cost);
+    Swal.fire({
+      title: "Are you Agree cost?",
+      text: `you will be charged ${cost}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Send My parcel!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // post data to database
+
+        axiosSecure
+          .post("/parcels", data)
+          .then((res) => {
+            console.log("after saving parcels", res.data);
+            Swal.fire({
+              title: "Send!",
+              text: "Your Parcel has been send.",
+              icon: "success",
+            });
+          })
+          .catch();
+      }
+    });
   };
   return (
     <Container className="my-20 p-4 min-h-screen bg-base-100">
