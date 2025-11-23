@@ -28,6 +28,7 @@ export const Router = createBrowserRouter([
       },
       {
         path: "beArider",
+        loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
         element: (
           <PrivateRoutes>
             <BeaRider />
