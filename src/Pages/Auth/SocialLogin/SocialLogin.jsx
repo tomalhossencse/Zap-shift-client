@@ -2,23 +2,33 @@ import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const { signInwithGoogle } = useAuth();
   const handleSigninwithGoogle = () => {
     signInwithGoogle()
       .then((result) => {
         console.log(result);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "sign in with Google Succesfully!",
-          showConfirmButton: false,
-          timer: 1500,
+        const userInfo = {
+          email: result.user.email,
+          displayName: result.user.displayName,
+          photoURL: result.user.photoURL,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("use data has been stored", res.data);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "sign in with Google Succesfully!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(location?.state || "/");
         });
-        navigate(location?.state || "/");
       })
       .catch((error) => {
         Swal.fire({

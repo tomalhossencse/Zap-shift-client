@@ -7,9 +7,11 @@ import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Register = () => {
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const [show, setShow] = useState(false);
   const { registerUser, updateUserProfile } = useAuth();
@@ -41,6 +43,16 @@ const Register = () => {
           };
           updateUserProfile(userProfile)
             .then(() => {
+              const userInfo = {
+                email: data.email,
+                displayName: data.name,
+                photoURL: res.data.data.url,
+              };
+              axiosSecure.post("/users", userInfo).then((res) => {
+                if (res.data.insertedId) {
+                  console.log("user created in the database");
+                }
+              });
               Swal.fire({
                 position: "top-end",
                 icon: "success",
