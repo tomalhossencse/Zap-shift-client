@@ -98,11 +98,12 @@ export const Router = createBrowserRouter([
       },
       {
         path: "approve-rider",
-        element: (
-          <AdminRoute>
-            <ApproveRider />
-          </AdminRoute>
-        ),
+        Component: ApproveRider,
+        // element: (
+        //   <AdminRoute>
+        //     <ApproveRider />
+        //   </AdminRoute>
+        // ),
       },
       {
         path: "users-management",

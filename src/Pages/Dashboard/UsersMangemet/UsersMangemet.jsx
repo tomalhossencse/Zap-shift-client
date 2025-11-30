@@ -17,29 +17,42 @@ const UsersMangemet = () => {
 
   const handleUser = (user, role, msg, icon) => {
     const roleInfo = { role: role };
-    axiosSecure.patch(`/users/${user._id}/role`, roleInfo).then((res) => {
-      Swal.fire({
-        title: `Are you sure to mark as ${role} `,
-        text: `Your Role is Change Parmently Parmanetly!`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          refetch();
-          if (res.data.modifiedCount) {
-            // console.log(res.data);
-            Swal.fire({
-              title: `${role} marked`,
-              text: msg,
-              icon: icon,
-            });
+
+    axiosSecure
+      .patch(`/users/${user._id}/role`, roleInfo)
+      .then((res) => {
+        Swal.fire({
+          title: `Are you sure to mark as ${role}?`,
+
+          text: `The role change will be applied permanently.`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, Change Role",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if (res.data.modifiedCount) {
+              refetch();
+
+              Swal.fire({
+                title: `${role} marked`,
+                text: msg,
+                icon: icon,
+                timer: 1000,
+              });
+            }
           }
-        }
+        });
+      })
+      .catch((error) => {
+        console.error("Error updating user role:", error);
+        Swal.fire({
+          title: "Update Failed",
+          text: `There was an error updating the role to ${role}. Please try again.`,
+          icon: "error",
+        });
       });
-    });
   };
   const handleMakeUser = (user) => {
     handleUser(user, "admin", "Marks as Admin has been Succesfully", "success");
