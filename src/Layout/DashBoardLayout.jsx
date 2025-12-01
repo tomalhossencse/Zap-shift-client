@@ -1,4 +1,5 @@
 import React from "react";
+import { SiGoogletasks } from "react-icons/si";
 import { NavLink, Outlet } from "react-router";
 import { TbTruckDelivery } from "react-icons/tb";
 import Container from "../Utility/Container";
@@ -112,6 +113,7 @@ const DashBoardLayout = () => {
               </li>
 
               {/* rider only links */}
+
               {role === "rider" && (
                 <>
                   <li>
@@ -124,6 +126,22 @@ const DashBoardLayout = () => {
                       <span className="is-drawer-close:hidden">
                         <NavLink to="/dashboard/assigned-deliveries">
                           Assigned Deliveries
+                        </NavLink>
+                      </span>
+                    </button>
+                  </li>
+
+                  <li>
+                    <button
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Completed Deliveries"
+                    >
+                      {/* icon */}
+                      <SiGoogletasks />
+
+                      <span className="is-drawer-close:hidden">
+                        <NavLink to="/dashboard/completed-deliveries">
+                          Completed Deliveries
                         </NavLink>
                       </span>
                     </button>

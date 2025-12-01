@@ -20,6 +20,7 @@ const AssignedDeliveries = () => {
   const handleDeliveryStatusUpadate = (parcel, status) => {
     const statusInfo = {
       deliveryStatus: status,
+      riderId: parcel.riderId,
     };
     let message = `Parcel status is updated with ${status
       .split("-")
