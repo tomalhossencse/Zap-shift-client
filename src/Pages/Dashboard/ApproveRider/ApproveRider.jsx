@@ -37,6 +37,7 @@ const ApproveRider = () => {
   const handleReject = (rider) => {
     updateRiderStatus(rider, "rejected");
   };
+
   return (
     <div>
       <h1 className="px-6 pt-6 text-secondary text-3xl font-bold">
@@ -52,7 +53,8 @@ const ApproveRider = () => {
               <th>Email</th>
               <th>Application time</th>
               <th>District</th>
-              <th>Status</th>
+              <th>Application Status</th>
+              <th>Work Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -62,7 +64,9 @@ const ApproveRider = () => {
               <tr key={rider._id}>
                 <td className="whitespace-nowrap">{index + 1}</td>
                 <td>
-                  <div className="font-semibold">{rider.name}</div>
+                  <div className=" whitespace-nowrap font-semibold">
+                    {rider.name}
+                  </div>
                 </td>
                 <td className="whitespace-nowrap">{rider.email}</td>
 
@@ -78,6 +82,15 @@ const ApproveRider = () => {
                   }`}
                 >
                   {rider.status}
+                </td>
+                <td
+                  className={`${
+                    rider.workStatus === "unavailable"
+                      ? "text-red-500 "
+                      : "text-green-500 font-bold text-lg"
+                  }`}
+                >
+                  {rider.workStatus}
                 </td>
                 <td className="flex gap-4">
                   <button

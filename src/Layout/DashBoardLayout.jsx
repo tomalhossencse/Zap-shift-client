@@ -5,6 +5,8 @@ import Container from "../Utility/Container";
 import { FaRegCreditCard, FaUser } from "react-icons/fa6";
 import { PiPersonSimpleBikeBold } from "react-icons/pi";
 import useRole from "../hooks/useRole";
+import { RiEBikeFill } from "react-icons/ri";
+import { FaTasks } from "react-icons/fa";
 const DashBoardLayout = () => {
   const { role } = useRole();
   console.log(role);
@@ -108,6 +110,28 @@ const DashBoardLayout = () => {
                   </span>
                 </button>
               </li>
+
+              {/* rider only links */}
+              {role === "rider" && (
+                <>
+                  <li>
+                    <button
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Assigned Deliveries"
+                    >
+                      {/* icon */}
+                      <FaTasks />
+                      <span className="is-drawer-close:hidden">
+                        <NavLink to="/dashboard/assigned-deliveries">
+                          Assigned Deliveries
+                        </NavLink>
+                      </span>
+                    </button>
+                  </li>
+                </>
+              )}
+
+              {/* admin only links */}
               {role === "admin" ? (
                 <>
                   {/* rider */}
@@ -125,11 +149,26 @@ const DashBoardLayout = () => {
                       </span>
                     </button>
                   </li>
+                  {/* Assign Rider */}
+                  <li>
+                    <button
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Assign Riders"
+                    >
+                      {/* icon */}
+                      <RiEBikeFill />
+                      <span className="is-drawer-close:hidden">
+                        <NavLink to="/dashboard/assign-riders">
+                          Assign Riders
+                        </NavLink>
+                      </span>
+                    </button>
+                  </li>
                   {/* user management */}
                   <li>
                     <button
                       className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="uses Mangement"
+                      data-tip="user Mangement"
                     >
                       {/* icon */}
                       <FaUser />
