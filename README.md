@@ -1,16 +1,39 @@
-# React + Vite
+# 📦 ZapShift – Parcel Management System (Client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🌟 Project Overview
 
-Currently, two official plugins are available:
+**ZapShift** is a modern parcel management platform designed to simplify logistics and delivery management. The system allows users to book parcels, track delivery status, and manage shipment history through a clean and responsive interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The platform connects **customers, riders, and administrators** in one centralized system to ensure smooth parcel delivery operations with transparency and efficiency.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🔑 Key Access & Deployment Information
 
-## Expanding the ESLint configuration
+| Field | Value |
+|------|------|
+| Website Name | ZapShift Parcel Management System |
+| Admin Email | `admin@zapshift.com` |
+| Admin Password | `#Admin123` |
+| Live Site URL | https://zap-shift-app.netlify.app |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+# ✨ Core Website Features
+
+### 📦 Parcel Booking System
+Users can easily create delivery requests by providing sender and receiver details along with parcel information.
+
+### 🚚 Parcel Tracking
+Users can track parcel delivery progress and view the current status of shipments.
+
+### 👤 Role-Based Dashboard
+The system includes **three roles**:
+- User
+- Rider
+- Admin
+
+Each role has its own dashboard and access permissions.
+
+### 🧾 Parcel Status Workflow
+Parcels follow a delivery lifecycle:
