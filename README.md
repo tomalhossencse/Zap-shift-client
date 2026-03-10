@@ -21,9 +21,7 @@ The platform provides a centralized hub for managing the entire logistics chain.
 | Field             | Value                                      |
 | ----------------- | ------------------------------------------ |
 | **Website Name** | ZapShift Parcel Management System          |
-| **Live Site URL** | [https://zapshift-app.netlify.app]         |
-| **Admin Email** | `admin@zapshift.com`                       |
-| **Admin Password**| `#Admin123`                                |
+| **Live Site URL** | [https://zap-shift-app.netlify.app/]         |
 
 ---
 
